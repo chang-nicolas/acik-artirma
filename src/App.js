@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
+import Home from "./pages/homepage/index.js";
+import MarketPlace from "./pages/marketplace";
+import News from "./pages/news";
+
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  // const location = useLocation();
+  // console.log(location);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header />
+
+        <Routes>
+          <Route path="/*" element={<Home />} />
+          <Route path="/marketplace" element={<MarketPlace />} />
+          <Route path="/news" element={<News />} />
+          {/* <Route path="/buy-1block" element={<Buy1Block />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/all-blocks" element={<AllBlocks />} />
+          <Route path="/blocks" element={<Blocks />} />
+          <Route path="/market" element={<Market />} /> */}
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
